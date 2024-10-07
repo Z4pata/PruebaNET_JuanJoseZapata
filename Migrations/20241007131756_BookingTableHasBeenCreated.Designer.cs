@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PruebaNET_JuanJoseZapata.Data;
 
@@ -11,9 +12,11 @@ using PruebaNET_JuanJoseZapata.Data;
 namespace PruebaNET_JuanJoseZapata.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241007131756_BookingTableHasBeenCreated")]
+    partial class BookingTableHasBeenCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,50 +24,6 @@ namespace PruebaNET_JuanJoseZapata.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
-
-            modelBuilder.Entity("PruebaNET_JuanJoseZapata.Models.Booking", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int")
-                        .HasColumnName("employee_id");
-
-                    b.Property<DateTime?>("EndDate")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("end_date");
-
-                    b.Property<int>("GuestId")
-                        .HasColumnType("int")
-                        .HasColumnName("guest_id");
-
-                    b.Property<int>("RoomId")
-                        .HasColumnType("int")
-                        .HasColumnName("room_id");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("start_date");
-
-                    b.Property<double>("TotalCost")
-                        .HasColumnType("double")
-                        .HasColumnName("total_cost");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("GuestId");
-
-                    b.HasIndex("RoomId");
-
-                    b.ToTable("bookings");
-                });
 
             modelBuilder.Entity("PruebaNET_JuanJoseZapata.Models.Employee", b =>
                 {
@@ -696,33 +655,6 @@ namespace PruebaNET_JuanJoseZapata.Migrations
                             Description = "Designed for families, with additional space and several beds for a comfortable stay.",
                             Name = "Family Room"
                         });
-                });
-
-            modelBuilder.Entity("PruebaNET_JuanJoseZapata.Models.Booking", b =>
-                {
-                    b.HasOne("PruebaNET_JuanJoseZapata.Models.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PruebaNET_JuanJoseZapata.Models.Guest", "Guest")
-                        .WithMany()
-                        .HasForeignKey("GuestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PruebaNET_JuanJoseZapata.Models.Room", "Room")
-                        .WithMany()
-                        .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
-
-                    b.Navigation("Guest");
-
-                    b.Navigation("Room");
                 });
 
             modelBuilder.Entity("PruebaNET_JuanJoseZapata.Models.Room", b =>

@@ -14,6 +14,7 @@ namespace PruebaNET_JuanJoseZapata.Data
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Guest> Guests { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
 
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
