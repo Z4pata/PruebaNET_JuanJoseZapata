@@ -86,6 +86,8 @@ builder.Services.AddScoped<IBookingInterface, BookingService>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeInterface, EmployeeService>();
 
+builder.Services.AddScoped<IAuth, AuthService>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
