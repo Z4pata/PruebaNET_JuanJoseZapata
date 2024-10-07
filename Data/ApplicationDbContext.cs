@@ -19,6 +19,7 @@ namespace PruebaNET_JuanJoseZapata.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             RoomTypeSeeder.Seeder(modelBuilder);
+            RoomSeeder.Seeder(modelBuilder);
         }
     }
 }
