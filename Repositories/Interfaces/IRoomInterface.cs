@@ -6,7 +6,7 @@ using PruebaNET_JuanJoseZapata.Models;
 
 namespace PruebaNET_JuanJoseZapata.Repositories.Interfaces
 {
-    public interface IRoomService
+    public interface IRoomInterface
     {
         Task<ICollection<Room>> GetRooms();
         Task<ICollection<Room>> GetAvailableRooms();

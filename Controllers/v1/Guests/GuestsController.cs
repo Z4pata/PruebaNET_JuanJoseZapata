@@ -11,9 +11,9 @@ namespace PruebaNET_JuanJoseZapata.Controllers.v1.Guests
     [Route("api/v1/guests")]
     public partial class GuestsController : ControllerBase
     {
-        protected readonly IGuestService _service;
+        protected readonly IGuestInterface _service;
 
-        public GuestsController(IGuestService service)
+        public GuestsController(IGuestInterface service)
         {
             _service = service;
         }

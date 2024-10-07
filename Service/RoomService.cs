@@ -7,7 +7,7 @@ using PruebaNET_JuanJoseZapata.Repositories.Interfaces;
 
 namespace PruebaNET_JuanJoseZapata.Service
 {
-    public class RoomService : IRoomService
+    public class RoomService : IRoomInterface
     {
         private readonly IRoomsRepository _repository;
 

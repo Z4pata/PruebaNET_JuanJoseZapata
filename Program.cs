@@ -30,10 +30,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => {
 // Add Custom services
 
 builder.Services.AddScoped<IRoomsRepository, RoomRepository>();
-builder.Services.AddScoped<IRoomService, RoomService>();
+builder.Services.AddScoped<IRoomInterface, RoomService>();
 
 builder.Services.AddScoped<IGuestRepository, GuestRepository>();
-builder.Services.AddScoped<IGuestService, GuestService>();
+builder.Services.AddScoped<IGuestInterface, GuestService>();
 
 
 builder.Services.AddControllers();

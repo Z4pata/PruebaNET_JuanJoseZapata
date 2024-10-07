@@ -8,7 +8,7 @@ using PruebaNET_JuanJoseZapata.Repositories.Interfaces;
 
 namespace PruebaNET_JuanJoseZapata.Service
 {
-    public class GuestService : IGuestService
+    public class GuestService : IGuestInterface
     {
         private readonly IGuestRepository _repository;
         public GuestService(IGuestRepository repository)
