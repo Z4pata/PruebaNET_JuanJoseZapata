@@ -40,6 +40,7 @@ builder.Services.AddScoped<IRoomTypesInterface, RoomTypesService>();
 builder.Services.AddScoped<IGuestRepository, GuestRepository>();
 builder.Services.AddScoped<IGuestInterface, GuestService>();
 
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
