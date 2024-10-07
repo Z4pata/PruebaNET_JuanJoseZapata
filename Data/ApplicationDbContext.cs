@@ -12,6 +12,7 @@ namespace PruebaNET_JuanJoseZapata.Data
     {
         public DbSet<RoomType> RoomTypes { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<Guest> Guests { get; set; }
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
