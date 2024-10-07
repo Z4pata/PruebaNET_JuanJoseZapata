@@ -31,5 +31,22 @@ namespace PruebaNET_JuanJoseZapata.Repositories
         {
             return await _context.Bookings.AnyAsync(r => r.Id == id);
         }
+
+        public async Task<bool> CreateAsync(Booking booking)
+        {
+            try
+            {
+                _context.Bookings.Add(booking);
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            catch
+            {
+                Console.WriteLine("The Booking could not be saved in the database.");
+
+                return false;
+            }
+        }
     }
 }
