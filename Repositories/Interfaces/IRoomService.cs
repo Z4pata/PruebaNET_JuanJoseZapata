@@ -10,6 +10,7 @@ namespace PruebaNET_JuanJoseZapata.Repositories.Interfaces
     {
         Task<ICollection<Room>> GetRooms();
         Task<ICollection<Room>> GetAvailableRooms();
+        Task<ICollection<Room>> GetOccupiedRooms();
         Task<string> GetSummaryRooms();
         Task<Room?> GetRoomById(int id);
 

@@ -33,17 +33,26 @@ namespace PruebaNET_JuanJoseZapata.Service
             return availables;
         }
 
+        public async Task<ICollection<Room>> GetOccupiedRooms()
+        {
+            var rooms = await _repository.GetRoomsAsync();
+
+            var availables = rooms.Where(r => r.Availability == false).ToList();
+
+            return availables;
+        }
+
         public async Task<string> GetSummaryRooms()
         {
             var rooms = await _repository.GetRoomsAsync();
 
-            var availables = rooms.Where(r => r.Availability == true).Count();
+            var availables = await GetAvailableRooms();
 
-            var unavailables = rooms.Count - availables;
+            var occupied = await GetOccupiedRooms();
 
             return $@"In the hotel we have a total of {rooms.Count} registered rooms, of which:
-{unavailables} are occupied.
-{availables} are available.";
+{occupied.Count} are occupied.
+{availables.Count} are available.";
         }
 
         public async Task<Room?> GetRoomById(int id)

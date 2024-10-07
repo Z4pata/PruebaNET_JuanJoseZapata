@@ -34,6 +34,19 @@ namespace PruebaNET_JuanJoseZapata.Controllers.v1.Rooms
             return Ok(availableRooms);
         }
 
+        [HttpGet("occupied-rooms")]
+        public async Task<IActionResult> GetOccupiedRooms()
+        {
+            var occupiedRooms = await _service.GetOccupiedRooms();
+
+            if (occupiedRooms.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(occupiedRooms);
+        }
+
         [HttpGet("summary")]
         public async Task<IActionResult> GetSummary()
         {
