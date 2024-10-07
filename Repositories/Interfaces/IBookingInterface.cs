@@ -10,5 +10,6 @@ namespace PruebaNET_JuanJoseZapata.Repositories.Interfaces
     {
         Task<ICollection<Booking>?> AllBooksByIdentificationOfGuest(string IdentificationNumber);
         Task<Booking?> GetBookingById(int id);
+        Task<bool> DeleteBooking(int id);
     }
 }

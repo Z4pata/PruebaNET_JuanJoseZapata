@@ -10,6 +10,7 @@ namespace PruebaNET_JuanJoseZapata.Repositories.Interfaces
     {
         Task<bool> CreateAsync(Employee employee);
         Task<ICollection<Employee>> GetEmployeesAsync();
+        Task<Employee?> GetByEmailAsync(string email);
         Task<bool> CheckExistByIdentification(string IdentificationNumber);
     }
 }

@@ -1,5 +1,8 @@
+using System.Text;
 using DotNetEnv;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PruebaNET_JuanJoseZapata.Data;
 using PruebaNET_JuanJoseZapata.Repositories;
@@ -18,6 +21,7 @@ var DB_USER = Environment.GetEnvironmentVariable("DB_USER");
 var DB_PASSWORD = Environment.GetEnvironmentVariable("DB_PASSWORD");
 
 
+
 // Add connection string
 var stringConnection = $"server={DB_HOST};port={DB_PORT};database={DB_NAME};uid={DB_USER};password={DB_PASSWORD}";
 
@@ -25,6 +29,42 @@ var stringConnection = $"server={DB_HOST};port={DB_PORT};database={DB_NAME};uid=
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
     options.UseMySql(stringConnection, ServerVersion.Parse("8.0.20-mysql"));
 });
+
+
+
+// -------------- JWT ----------------
+
+var JWT_ISSUER = Environment.GetEnvironmentVariable("JWT_ISSUER") ?? throw new InvalidOperationException("Issuer no encontrado");
+
+var JWT_Key = Environment.GetEnvironmentVariable("JWT_KEY")?? throw new InvalidOperationException("JWT Key no encontrada");
+
+var Key = Encoding.UTF8.GetBytes(JWT_Key);
+
+Console.WriteLine("Jwt Key: " + Key);
+
+// ------------- Jwt Configurations
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Key),  // Agrega la firma de la JWT Key codificada
+        ValidIssuer = JWT_ISSUER,   // Agrega un issuer valido, seria la URL del despliegue de la app
+        ValidateAudience = false,   // Valida una audiencia (en este caso esta en false, osea no valida) normalmente es la URL del front
+        RequireExpirationTime = true,
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero
+    };
+});
+
+// ---------------------------------------
 
 // Add services to the container.
 // Add Custom services
@@ -50,10 +90,36 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hotel API", Version = "v1" });
+
+    // Define security scheme
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hotel Assestment", Version = "v1" });
-        
+        In = ParameterLocation.Header,
+        Description = "Please, enter your JWT token",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer"
     });
+
+    // Require authentication for all endpoints
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+
+});
 
 var app = builder.Build();
 

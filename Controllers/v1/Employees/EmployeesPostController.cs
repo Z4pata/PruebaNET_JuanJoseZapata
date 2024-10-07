@@ -26,5 +26,18 @@ namespace PruebaNET_JuanJoseZapata.Controllers.v1.Employees
 
             return Created();
         }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> LogIn ([FromForm] LoginDTO login)
+        {
+            var result = await _authService.AuthenticateAsync(login.Email, login.Password);
+
+            if (result == null)
+            {
+                return BadRequest("unauthenticated user");
+            }
+
+            return Ok(result);
+        }
     }
 }

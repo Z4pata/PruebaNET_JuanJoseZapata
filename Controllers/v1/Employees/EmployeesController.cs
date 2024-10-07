@@ -12,10 +12,12 @@ namespace PruebaNET_JuanJoseZapata.Controllers.v1.Employees
     public partial class EmployeesController : ControllerBase
     {
         private readonly IEmployeeInterface _service;
+        private readonly IAuth _authService;
 
-        public EmployeesController(IEmployeeInterface service)
+        public EmployeesController(IEmployeeInterface service, IAuth authService)
         {
             _service  = service;
+            _authService = authService;
         }
     }
 }

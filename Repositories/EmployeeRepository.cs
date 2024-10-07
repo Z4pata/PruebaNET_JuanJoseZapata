@@ -43,5 +43,9 @@ namespace PruebaNET_JuanJoseZapata.Repositories
         {
             return await _context.Employees.AnyAsync(e => e.IdentificationNumber == IdentificationNumber);
         }
+        public async Task<Employee?> GetByEmailAsync(string email)
+        {
+            return await _context.Employees.FirstOrDefaultAsync(u => u.Email == email);
+        }
     }
 }
