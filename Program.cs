@@ -32,6 +32,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => {
 builder.Services.AddScoped<IRoomsRepository, RoomRepository>();
 builder.Services.AddScoped<IRoomInterface, RoomService>();
 
+
+builder.Services.AddScoped<IRoomTypesRepository, RoomTypesRepository>();
+builder.Services.AddScoped<IRoomTypesInterface, RoomTypesService>();
+
+
 builder.Services.AddScoped<IGuestRepository, GuestRepository>();
 builder.Services.AddScoped<IGuestInterface, GuestService>();
 
