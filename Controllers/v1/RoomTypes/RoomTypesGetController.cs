@@ -21,5 +21,18 @@ namespace PruebaNET_JuanJoseZapata.Controllers.v1.RoomTypes
 
             return Ok(rooms);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var room = await  _service.GetRoomTypesById(id);
+
+            if (room == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(room);
+        }
     }
 }

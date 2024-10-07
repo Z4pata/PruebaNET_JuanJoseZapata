@@ -9,5 +9,6 @@ namespace PruebaNET_JuanJoseZapata.Repositories.Interfaces
     public interface IRoomTypesRepository
     {
         Task<ICollection<RoomType>> GetRoomTypesAsync();
+        Task<bool> CheckExistById(int id);
     }
 }

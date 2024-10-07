@@ -23,5 +23,22 @@ namespace PruebaNET_JuanJoseZapata.Service
 
             return inOrder ;
         }
+
+        public async Task<RoomType?> GetRoomTypesById(int id)
+        {
+            var exist = await _repository.CheckExistById(id);
+
+            if (!exist)
+            {
+                return null;
+            }
+
+            var roomTypes = await _repository.GetRoomTypesAsync();
+
+            var matched = roomTypes.FirstOrDefault(r => r.Id == id);
+
+            return matched;
+        }
+        
     }
 }

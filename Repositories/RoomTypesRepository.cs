@@ -21,5 +21,10 @@ namespace PruebaNET_JuanJoseZapata.Repositories
         {
             return await _context.RoomTypes.ToListAsync();
         }
+
+        public async Task<bool> CheckExistById(int id)
+        {
+            return await _context.RoomTypes.AnyAsync(r => r.Id == id);
+        }
     }
 }
