@@ -11,9 +11,9 @@ namespace PruebaNET_JuanJoseZapata.Controllers.v1.Rooms
     [Route("api/v1/rooms")]
     public partial class RoomsController : ControllerBase
     {
-        protected readonly IRoomService _service;
+        protected readonly IRoomInterface _service;
 
-        public RoomsController(IRoomService service)
+        public RoomsController(IRoomInterface service)
         {
             _service = service;
         }
