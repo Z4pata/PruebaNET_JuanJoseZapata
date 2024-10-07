@@ -1,6 +1,10 @@
 using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using PruebaNET_JuanJoseZapata.Data;
+using PruebaNET_JuanJoseZapata.Repositories;
+using PruebaNET_JuanJoseZapata.Repositories.Interfaces;
+using PruebaNET_JuanJoseZapata.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,11 +27,19 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => {
 });
 
 // Add services to the container.
+// Add Custom services
+
+builder.Services.AddScoped<IRoomsRepository, RoomRepository>();
+builder.Services.AddScoped<IRoomService, RoomService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+    {
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hotel Assestment", Version = "v1" });
+        
+    });
 
 var app = builder.Build();
 
