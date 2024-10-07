@@ -6,9 +6,9 @@ using PruebaNET_JuanJoseZapata.Models;
 
 namespace PruebaNET_JuanJoseZapata.Repositories.Interfaces
 {
-    public interface IBookingRepository
+    public interface IBookingInterface
     {
-        Task<ICollection<Booking>> GetBookingsAsync();
-        Task<bool> CheckExistById(int id);
+        Task<ICollection<Booking>?> AllBooksByIdentificationOfGuest(string IdentificationNumber);
+        Task<Booking?> GetBookingById(int id);
     }
 }

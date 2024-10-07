@@ -26,5 +26,10 @@ namespace PruebaNET_JuanJoseZapata.Repositories
             .Include(b => b.Room)
             .ToListAsync();
         }
+
+        public async Task<bool> CheckExistById(int id)
+        {
+            return await _context.Bookings.AnyAsync(r => r.Id == id);
+        }
     }
 }
