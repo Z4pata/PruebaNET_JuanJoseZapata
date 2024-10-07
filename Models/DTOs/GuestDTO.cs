@@ -19,6 +19,7 @@ namespace PruebaNET_JuanJoseZapata.Models.DTOs
         public required string Email { get; set; }
 
         [StringLength(20, ErrorMessage = "Input too long")]
+        [MinLength(6, ErrorMessage = "The document number should be at least 6 digits long.")]
         public required string IdentificationNumber { get; set; }
 
         [Phone(ErrorMessage = "Phone format is not valid")]
@@ -27,7 +28,6 @@ namespace PruebaNET_JuanJoseZapata.Models.DTOs
 
         
         [DataType(DataType.Date)]
-        [RegularExpression(@"^\d{4}-\d{2}-\d{2}$")] //regular expresion for the date yyyy-MM-dd
         public DateOnly? BirthDate { get; set; }
     }
 }
