@@ -26,7 +26,6 @@ namespace PruebaNET_JuanJoseZapata.Models
 
         [Column("email")]
         [Required]
-        [EmailAddress]
         public required string Email { get; set; }
 
         [Column("identification_number")]
