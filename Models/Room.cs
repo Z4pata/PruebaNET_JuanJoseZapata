@@ -30,7 +30,7 @@ namespace PruebaNET_JuanJoseZapata.Models
         [Column("max_occupancy_persons")]
         [Range(0, 5)]
         [Required]
-        public required int MaxOccupancyPersons { get; set; }
+        public required byte MaxOccupancyPersons { get; set; }
 
         [Column("room_type_id")]
         [Required]
