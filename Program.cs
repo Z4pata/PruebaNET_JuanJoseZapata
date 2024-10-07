@@ -44,4 +44,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+
+// Redirect to swagger page
+app.MapGet("/", () => Results.Redirect("/swagger"));
+
 app.Run();
