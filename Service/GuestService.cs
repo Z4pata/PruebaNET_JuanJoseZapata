@@ -25,6 +25,15 @@ namespace PruebaNET_JuanJoseZapata.Service
                 return false;
             }
 
+            var dateTime = DateTime.Now;
+            var dateOnly = new DateOnly(dateTime.Year, dateTime.Month, dateTime.Day);
+
+            if (guest.BirthDate >= dateOnly)
+            {
+                Console.WriteLine("Date is not valid");
+                return false;
+            }
+
 
             var NewGuest = new Guest 
             {
@@ -34,7 +43,6 @@ namespace PruebaNET_JuanJoseZapata.Service
                 PhoneNumber = guest.PhoneNumber,
                 IdentificationNumber = guest.IdentificationNumber,
                 BirthDate = guest.BirthDate
-
             };
 
             var created = await _repository.CreateAsync(NewGuest);

@@ -28,6 +28,6 @@ namespace PruebaNET_JuanJoseZapata.Models.DTOs
 
         
         [DataType(DataType.Date)]
-        public DateOnly? BirthDate { get; set; }
+        public DateOnly BirthDate { get; set; }
     }
 }
