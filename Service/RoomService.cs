@@ -19,8 +19,9 @@ namespace PruebaNET_JuanJoseZapata.Service
         public async Task<ICollection<Room>> GetRooms()
         {
             var rooms = await _repository.GetRoomsAsync();
+            var inOrder = rooms.OrderBy(r => r.Id).ToList();
 
-            return rooms ;
+            return inOrder ;
         }
 
         public async Task<ICollection<Room>> GetAvailableRooms()
