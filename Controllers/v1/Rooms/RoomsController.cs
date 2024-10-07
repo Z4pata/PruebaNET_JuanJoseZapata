@@ -8,7 +8,7 @@ using PruebaNET_JuanJoseZapata.Repositories.Interfaces;
 namespace PruebaNET_JuanJoseZapata.Controllers.v1.Rooms
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/rooms")]
     public partial class RoomsController : ControllerBase
     {
         protected readonly IRoomService _service;

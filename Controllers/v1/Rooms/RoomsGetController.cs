@@ -8,7 +8,7 @@ namespace PruebaNET_JuanJoseZapata.Controllers.v1.Rooms
 {
     public partial class RoomsController
     {
-        [HttpGet("all-rooms")]
+        [HttpGet]
         public async Task<IActionResult> GetAllRooms()
         {
             var rooms = await _service.GetRooms();
@@ -21,7 +21,7 @@ namespace PruebaNET_JuanJoseZapata.Controllers.v1.Rooms
             return Ok(rooms);
         }
 
-        [HttpGet("available-rooms")]
+        [HttpGet("available")]
         public async Task<IActionResult> GetAvailableRooms()
         {
             var availableRooms = await _service.GetAvailableRooms();
@@ -34,7 +34,7 @@ namespace PruebaNET_JuanJoseZapata.Controllers.v1.Rooms
             return Ok(availableRooms);
         }
 
-        [HttpGet("occupied-rooms")]
+        [HttpGet("occupied")]
         public async Task<IActionResult> GetOccupiedRooms()
         {
             var occupiedRooms = await _service.GetOccupiedRooms();
@@ -47,7 +47,7 @@ namespace PruebaNET_JuanJoseZapata.Controllers.v1.Rooms
             return Ok(occupiedRooms);
         }
 
-        [HttpGet("summary")]
+        [HttpGet("status")]
         public async Task<IActionResult> GetSummary()
         {
             var summary = await _service.GetSummaryRooms();
@@ -55,7 +55,7 @@ namespace PruebaNET_JuanJoseZapata.Controllers.v1.Rooms
             return Ok(summary);
         }
 
-        [HttpGet("room-by-id/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var room = await  _service.GetRoomById(id);
