@@ -48,5 +48,22 @@ namespace PruebaNET_JuanJoseZapata.Service
 
             return bookingMatched;
         }
+
+        public async Task<bool> DeleteBooking(int id)
+        {
+            var booking = await GetBookingById(id);
+
+            if (booking == null)
+            {
+                Console.WriteLine("reservation could not be deleted");
+                return false;
+            }
+
+            booking.Room.Availability = true;
+
+            await _repository.DeleteAsync(booking);
+
+            return true;
+        }
     }
 }

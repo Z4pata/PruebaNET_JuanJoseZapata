@@ -11,5 +11,6 @@ namespace PruebaNET_JuanJoseZapata.Repositories.Interfaces
         Task<ICollection<Booking>> GetBookingsAsync();
         Task<bool> CheckExistById(int id);
         Task<bool> CreateAsync(Booking booking);
+        Task<bool> DeleteAsync(Booking booking);
     }
 }

@@ -48,5 +48,24 @@ namespace PruebaNET_JuanJoseZapata.Repositories
                 return false;
             }
         }
+
+        public async Task<bool> DeleteAsync(Booking booking)
+        {
+            try
+            {
+                _context.Bookings.Remove(booking);
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            catch
+            {
+
+                Console.WriteLine("The Booking could not be removed from the database.");
+
+                return false;
+
+            }
+        }
     }
 }
